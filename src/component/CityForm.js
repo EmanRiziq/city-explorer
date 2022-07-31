@@ -1,11 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
-class form extends React.Component {
+class CityForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            restaurants: restaurantsData,
+            CityData: [],
             displayResult: false,
         }
     }
@@ -27,3 +27,4 @@ class form extends React.Component {
         )
     }
 }
+export default CityForm;
