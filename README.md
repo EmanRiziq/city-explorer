@@ -1,26 +1,34 @@
 # Project Name
 
 **Author**: Eman Riziq
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.2 (increment the patch/fix version number if you make more commits past your first submission)
 
+#Overview
+This application is a location search engine basically in which you can enter a city name and the city data such as name, latitude, longitude, map would appear.
 
-![web request-response cycle](request-response.jpg)
-## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
-
-## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
-
-## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-
-## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
+#Getting Started
+create a react app
+install axios
+add .env file and put it in .gitignore
+get access token from locationIQ
+install bootstrap
+#Architecture
+ReactJS
+Bootstrap
+Axios
+LocationIQ
+Dotenv
+#Change Log
+31-07-2022 11:00pm - Application now has a fully-functional search with a GET route for the location resource. 01-08-2022 7:00pm - Application now has a fully-functional search with a GET route for the location resource and displays map image and an error.
 01-08-2022 9:00am - Application now has a form with non complete API calling
+01-08-2022 9:20pm - the Application has every requested component but give err 403
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-1- [Salah AL-hamawi]()
+
+1- [Salah AL-hamawi](https://github.com/mohasal0101)
+
+![web request-response cycle](request-response.jpg)
+
 
 
 
@@ -32,7 +40,7 @@ Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: ***4 hours***
+Actual time needed to complete: ***7 hours***
 
 
 
