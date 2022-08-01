@@ -10,10 +10,9 @@ class CityForm extends React.Component {
         }
     }
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.setState({
-            displayResult: true
-        })
+        e.preventdefault();
+        console.log("form");
+        this.props.getcity(e);
     }
     render() {
         return (
