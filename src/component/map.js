@@ -1,12 +1,10 @@
 import { Component } from "react"
 
- class Map extends Component
-{
-    render(){
+class Map extends Component {
+    render() {
         return (
-            <>
-      <img src={this.props.map.src} alt ={this.props.title}/>
-    </>
+            
+                <img src={this.props.img_src} alt={this.props.title} />
 
         )
     }
