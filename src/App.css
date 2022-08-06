@@ -1,7 +1,18 @@
 .App {
   text-align: center;
-}
+ }
+body
+{
+   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmsKSGDPfrihNiA2pLV-DFB2aUzF4kk3DVQQ&usqp=CAU");
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+opacity: 0.9;
 
+}
+p,h1{
+  color:antiquewhite;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +46,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+table{
+ width: 2in
 }

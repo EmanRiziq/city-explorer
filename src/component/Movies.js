@@ -1,14 +1,24 @@
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import MoviesCard from './MoviesCard';
+
 import { Component } from "react"
 export default class Movies extends Component {
     render() {
-        console.log(this.props.MoviesInfo);
         return (
             <>
-            <p> movies</p>
-                {this.props.MoviesInfo.map(item =>
-                    <li>{item.date} : {item.title}</li>
-                )}
-
+                <h1> movies</h1>
+                <Row xs={1} md={3} className="g-4">
+                    {this.props.MoviesInfo.map((item) => {
+                        return (
+                            <Col>
+                                <MoviesCard item={item} />
+                            </Col>
+                        )
+                    }
+                    )}
+                </Row>
             </>
         )
     }

@@ -7,6 +7,8 @@ import Map from './component/map';
 import MyAlert from './component/alert';
 import Weather from './component/Weather';
 import Movies from './component/Movies.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -24,10 +26,8 @@ class App extends Component {
             isMovies: false
         }
     }
-
     getCityName = async (e) => {
         e.preventDefault();
-
         try {
             const cityData = await axios.get(`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${e.target.userCityInput.value}&format=json`)
             this.setState({
@@ -38,9 +38,9 @@ class App extends Component {
                 longitude: cityData.data[0].lon,
                 Displayerr: false
             });
-
-            this.displayWeather(e.target.userCityInput.value, cityData.data[0].lat, cityData.data[0].lon);
             this.displayMovies(e.target.userCityInput.value);
+
+            this.displayWeather(cityData.data[0].lat, cityData.data[0].lon);
         }
         catch (error) {
             this.setstate({
@@ -50,33 +50,45 @@ class App extends Component {
             })
         }
     }
+    displayWeather = async (lat, lon, searchQuery) => {
+        try {
 
-
-    displayWeather = async (lat, lon) => {
-        const weatherData = await axios.get(`${process.env.REACT_APP_SERVER_MAIN}/weather?&lat=${lat}&lon=${lon}`)
-        this.setState({
-            isweather: true,
-            weather: weatherData.data,
-        })
+            const weatherData = await axios.get(`https://eman-city-server.herokuapp.com/weather?&lat=${lat}&lon=${lon}&searchQuery=${searchQuery}`)
+            // const weatherData = await axios.get(`${process.env.REACT_APP_SERVER_MAIN}/weather?&lat=${lat}&lon=${lon}&searchQuery=${searchQuery}`)
+            this.setState({
+                isweather: true,
+                weather: weatherData.data,
+            })
+        }
+        catch (error) {
+            this.setstate({
+                Displayerr: true,
+                errormsg: error.response.status,
+                display_name: ''
+            })
+        }
     }
-
-
     displayMovies = async (searchQuery) => {
-        const MoviesData = await axios.get(`${process.env.REACT_APP_SERVER_MAIN}/Movies?&searchQuery=${searchQuery}`)
-        this.setState({
-            isMovies: true,
-            Movies: MoviesData.data,
-        })
-        console.log("movies "+MoviesData.data);
+        try {
+            const MoviesData = await axios.get(`https://eman-city-server.herokuapp.com/Movies?&searchQuery=${searchQuery}`)
 
+            // const MoviesData = await axios.get(`${process.env.REACT_APP_SERVER_MAIN}/Movies?&searchQuery=${searchQuery}`)
+            this.setState({
+                isMovies: true,
+                Movies: MoviesData.data,
+            })
+        }
+        catch (error) {
+            this.setstate({
+                Displayerr: true,
+                errormsg: error.response.status,
+                display_name: ''
+            })
+        }
     }
-
-
-
     render() {
-
         return (
-            <div className="App">
+            <div className="App" >
                 <h1> {process.env.REACT_APP_TITLE}</h1>
                 <Form onSubmit={this.getCityName}>
                     <Form.Label htmlFor="text" id='userCityInput' >Enter City Name </Form.Label>
@@ -85,22 +97,21 @@ class App extends Component {
                 </Form>
                 {this.state.Displayerr &&
                     <MyAlert errormsg={this.state.errormsg} />}
-                {/* +':'+error.response.data.error */}
                 {this.state.display_name &&
                     <>
                         <p>City Name: {this.state.display_name}</p>
                         <p>City latitude: {this.state.latitude} </p>
                         <p>City longitude: {this.state.longitude}</p>
-                        <p> weather :{this.state.isweather}</p>
-                        <Map img_src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.latitude},${this.state.longitude}&zoom=10`} title={this.state.display_name} />
-                        {
-                            this.state.isweather &&
-                            <Weather weatherInfo={this.state.weather} />
-                        }
-                        {
-                            this.state.isMovies &&
-                            <Movies MoviesInfo={this.state.Movies} />
-                        }
+                        <div className='weathermovie'>
+                            <Map img_src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.latitude},${this.state.longitude}&zoom=10`} title={this.state.display_name} />
+                            {
+                                this.state.isweather &&
+                                <Weather  weatherInfo={this.state.weather} />
+                            }
+                            {
+                                this.state.isMovies &&
+                                <Movies MoviesInfo={this.state.Movies} />
+                            }</div>
                     </>
                 }
             </div>
