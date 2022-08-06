@@ -4,7 +4,7 @@ class Map extends Component {
     render() {
         return (
             
-                <img src={this.props.img_src} alt={this.props.title} />
+                <img src={this.props.img_src} alt={this.props.title} width={500} height={500}/>
 
         )
     }
