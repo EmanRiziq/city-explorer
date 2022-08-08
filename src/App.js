@@ -33,8 +33,9 @@ class App extends React.Component {
     }
     getCityName = async (e) => {
         e.preventDefault();
-        console.log(this.state.userInput)
-      const url =`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`
+        // console.log(this.state.userInput)
+        const url = `https://us1.locationiq.com/v1/search.php?key=pk.8eb1b7adbdfae88ee018681275161b85&q=${this.state.userInput}&format=json`
+
         try {
             const cityData = await axios.get(url)
 
@@ -51,7 +52,7 @@ class App extends React.Component {
             // this.displayWeather(cityData.data[0].lat, cityData.data[0].lon);
         }
         catch (error) {
-            
+
             this.setState({
                 Displayerr: true,
                 errormsg: "cannot retrive data"
