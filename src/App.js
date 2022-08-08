@@ -49,7 +49,7 @@ class App extends Component {
         catch (error) {
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.status,
+                // errormsg: error.response.status,
                 display_name: ''
             })
         }
@@ -67,7 +67,7 @@ class App extends Component {
         catch (error) {
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.status,
+                // errormsg: error.response.status,
                 display_name: ''
             })
         }
@@ -85,7 +85,7 @@ class App extends Component {
         catch (error) {
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.status,
+                // errormsg: error.response.status,
                 display_name: ''
             })
         }
@@ -101,7 +101,7 @@ class App extends Component {
                 </Form>
                 {this.state.Displayerr &&
                     // <MyAlert errormsg={this.state.errormsg} />}
-                    <p>{this.state.errormsg}</p>}
+                    // <p>{this.state.errormsg}</p>}
                 {this.state.display_name &&
                     <>
                         <p>City Name: {this.state.display_name}</p>
