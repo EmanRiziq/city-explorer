@@ -33,6 +33,7 @@ class App extends React.Component {
     }
     getCityName = async (e) => {
         e.preventDefault();
+        console.log(this.state.userInput)
       const url =`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`
         try {
             const cityData = await axios.get(url)
