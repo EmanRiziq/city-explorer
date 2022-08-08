@@ -14,7 +14,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             userInput: '',
-            allCity: {},
+            // allCity: {},
             display_name: '',
             latitude: '',
             longitude: '',
@@ -33,13 +33,13 @@ class App extends React.Component {
     }
     getCityName = async (e) => {
         e.preventDefault();
-      
+      const url =`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`
         try {
-            const cityData = await axios.get(`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`)
+            const cityData = await axios.get(url)
 
             console.log(cityData);
             this.setState({
-                allCity: cityData.data[0],
+                // allCity: cityData.data[0],
                 display_name: cityData.data[0].display_name,
                 latitude: cityData.data[0].lat,
                 longitude: cityData.data[0].lon
@@ -53,7 +53,7 @@ class App extends React.Component {
             
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.data.error
+                errormsg: "cannot retrive data"
                 // display_name: ''
             })
             console.log(error.response.data.error)
