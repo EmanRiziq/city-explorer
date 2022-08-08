@@ -1,4 +1,4 @@
-import Card from 'react-bootstrap/Card';
+// import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import MoviesCard from './MoviesCard';
@@ -10,9 +10,9 @@ export default class Movies extends Component {
             <>
                 <h1> movies</h1>
                 <Row xs={1} md={3} className="g-4">
-                    {this.props.MoviesInfo.map((item) => {
+                    {this.props.MoviesInfo.map((item,index) => {
                         return (
-                            <Col>
+                            <Col key={index}>
                                 <MoviesCard item={item} />
                             </Col>
                         )
