@@ -18,7 +18,7 @@ class App extends React.Component {
             display_name: '',
             latitude: '',
             longitude: '',
-            // errormsg: '',
+            errormsg: '',
             Displayerr: false,
             weather: [],
             isweather: false,
@@ -33,27 +33,31 @@ class App extends React.Component {
     }
     getCityName = async (e) => {
         e.preventDefault();
+      
         try {
             const cityData = await axios.get(`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`)
+
             console.log(cityData);
             this.setState({
                 allCity: cityData.data[0],
                 display_name: cityData.data[0].display_name,
                 latitude: cityData.data[0].lat,
-                longitude: cityData.data[0].lon,
-                Displayerr: false
+                longitude: cityData.data[0].lon
+                // Displayerr: false
             });
             console.log("test" + this.state.display_name);
-            this.displayMovies(e.target.userCityInput.value);
-            this.displayWeather(cityData.data[0].lat, cityData.data[0].lon);
+            // this.displayMovies(e.target.userCityInput.value);
+            // this.displayWeather(cityData.data[0].lat, cityData.data[0].lon);
         }
         catch (error) {
+            
             this.setState({
                 Displayerr: true,
-                // errormsg: error.response.data.error,
-                display_name: ''
+                errormsg: error.response.data.error
+                // display_name: ''
             })
-            
+            console.log(error.response.data.error)
+
         }
     }
     displayWeather = async (lat, lon, searchQuery) => {
@@ -101,8 +105,8 @@ class App extends React.Component {
                     <Form.Control onChange={this.updateUserInput} type="text" id="userCityInput" />
                     <Button variant="primary" type="submit">Explore! </Button>
                 </Form>
-                {/* {this.state.Displayerr &&
-                    <p>{this.state.errormsg}</p>} */}
+                {this.state.Displayerr &&
+                    <p>{this.state.errormsg}</p>}
                 {this.state.display_name &&
                     <>
                         <p>City Name: {this.state.display_name}</p>
@@ -110,14 +114,15 @@ class App extends React.Component {
                         <p>City longitude: {this.state.longitude}</p>
                         <div className='weathermovie'>
                             <Map img_src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.latitude},${this.state.longitude}&zoom=10`} title={this.state.display_name} />
-                            {
+                            {/* {
                                 this.state.isweather &&
                                 <Weather weatherInfo={this.state.weather} />
                             }
                             {
                                 this.state.isMovies &&
                                 <Movies MoviesInfo={this.state.Movies} />
-                            }</div>
+                            } */}
+                        </div>
                     </>
                 }
             </div>
