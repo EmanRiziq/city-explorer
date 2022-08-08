@@ -99,8 +99,8 @@ class App extends Component {
                     <Form.Control onChange={this.updateUserInput} type="text" id="userCityInput" />
                     <Button variant="primary" type="submit">Explore! </Button>
                 </Form>
-                {this.state.Displayerr&&
-                <p>{this.state.errormsg}</p>}
+                {this.state.Displayerr &&
+                    <p>{this.state.errormsg}</p>}
                 {this.state.display_name &&
                     <>
                         <p>City Name: {this.state.display_name}</p>

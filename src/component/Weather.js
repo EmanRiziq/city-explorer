@@ -1,14 +1,21 @@
 import { Component } from "react"
-import Table from 'react-bootstrap/Table';
-import { WeatherDaily } from "./WeatherDaily";
-import Carousel from 'react-bootstrap/Carousel';
+// import Table from 'react-bootstrap/Table';
+// import { WeatherDaily } from "./WeatherDaily";
+// import Carousel from 'react-bootstrap/Carousel';
 
 export default class Weather extends Component {
     render() {
         return (
-            <> 
-                            <h1>Weather<br/></h1>
+            <>
+                <h1>Weather<br /></h1>
+                {this.props.weatherInfo.map((item,index) => {
+                    return (<ul key={index}>
+                        <li>{item.date} {item.description}</li>
+                    </ul>
+                    )
 
+                })}
+                {/* 
             <div style={{  display: 'flex', justifyContent: 'center' ,padding: '0 0 2 2'}}>
                 <Table responsive  hover size="sm">
                     <thead>
@@ -27,8 +34,7 @@ export default class Weather extends Component {
 
                         })}
                     </tbody>
-                </Table>
-            </div>
+                </Table> */}
             </>
         )
     }
