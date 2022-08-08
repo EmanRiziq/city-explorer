@@ -50,9 +50,10 @@ class App extends React.Component {
         catch (error) {
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.data.error,
+                // errormsg: error.response.data.error,
                 display_name: ''
             })
+            
         }
     }
     displayWeather = async (lat, lon, searchQuery) => {
@@ -68,7 +69,7 @@ class App extends React.Component {
         catch (error) {
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.data.error,
+                // errormsg: error.response.data.error,
                 display_name: ''
             })
         }
@@ -86,7 +87,7 @@ class App extends React.Component {
         catch (error) {
             this.setState({
                 Displayerr: true,
-                errormsg: error.response.data.error,
+                // errormsg: error.response.data.error,
                 display_name: ''
             })
         }
