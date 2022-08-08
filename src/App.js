@@ -18,7 +18,7 @@ class App extends Component {
             display_name: '',
             latitude: '',
             longitude: '',
-            errormsg: '',
+            // errormsg: '',
             Displayerr: false,
             weather: [],
             isweather: false,
@@ -26,24 +26,28 @@ class App extends Component {
             isMovies: false
         }
     }
+    updateUserInput = (e) => {
+        this.setState({
+            userInput: e.target.value,
+        });
+    }
     getCityName = async (e) => {
         e.preventDefault();
         try {
-            const cityData = await axios.get(`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${e.target.userCityInput.value}&format=json`)
+            const cityData = await axios.get(`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`)
             this.setState({
-                userInput: e.target.userCityInput.value,
                 allCity: cityData.data[0],
                 display_name: cityData.data[0].display_name,
                 latitude: cityData.data[0].lat,
                 longitude: cityData.data[0].lon,
                 Displayerr: false
             });
+            console.log("test" + this.state.display_name);
             this.displayMovies(e.target.userCityInput.value);
-
             this.displayWeather(cityData.data[0].lat, cityData.data[0].lon);
         }
         catch (error) {
-            this.setstate({
+            this.setState({
                 Displayerr: true,
                 errormsg: error.response.status,
                 display_name: ''
@@ -61,7 +65,7 @@ class App extends Component {
             })
         }
         catch (error) {
-            this.setstate({
+            this.setState({
                 Displayerr: true,
                 errormsg: error.response.status,
                 display_name: ''
@@ -79,7 +83,7 @@ class App extends Component {
             })
         }
         catch (error) {
-            this.setstate({
+            this.setState({
                 Displayerr: true,
                 errormsg: error.response.status,
                 display_name: ''
@@ -92,11 +96,12 @@ class App extends Component {
                 <h1> {process.env.REACT_APP_TITLE}</h1>
                 <Form onSubmit={this.getCityName}>
                     <Form.Label htmlFor="text" id='userCityInput' >Enter City Name </Form.Label>
-                    <Form.Control type="text" id="userCityInput" />
+                    <Form.Control onChange={this.updateUserInput} type="text" id="userCityInput" />
                     <Button variant="primary" type="submit">Explore! </Button>
                 </Form>
                 {this.state.Displayerr &&
-                    <MyAlert errormsg={this.state.errormsg} />}
+                    // <MyAlert errormsg={this.state.errormsg} />}
+                    <p>{this.state.errormsg}</p>}
                 {this.state.display_name &&
                     <>
                         <p>City Name: {this.state.display_name}</p>
@@ -106,7 +111,7 @@ class App extends Component {
                             <Map img_src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.latitude},${this.state.longitude}&zoom=10`} title={this.state.display_name} />
                             {
                                 this.state.isweather &&
-                                <Weather  weatherInfo={this.state.weather} />
+                                <Weather weatherInfo={this.state.weather} />
                             }
                             {
                                 this.state.isMovies &&
