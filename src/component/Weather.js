@@ -10,7 +10,7 @@ export default class Weather extends Component {
                 <h1>Weather<br /></h1>
                 {this.props.weatherInfo.map((item,index) => {
                     return (<ul key={index}>
-                        <li>{item.date} {item.description}</li>
+                        <li>{item.date} {"   -   "}{item.description}</li>
                     </ul>
                     )
 
