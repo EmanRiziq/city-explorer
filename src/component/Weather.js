@@ -9,10 +9,9 @@ export default class Weather extends Component {
             <> 
                             <h1>Weather<br/></h1>
 
-            <div style={{  display: 'flex', justifyContent: 'center' }}>
+            <div style={{  display: 'flex', justifyContent: 'center' ,padding: '0 0 2 2'}}>
                 <Table responsive  hover size="sm">
                     <thead>
-                        <tr></tr>
                         <tr style={{ color: 'antiquewhite' }}>
                             <th>Date</th>
                             <th>Description</th>
@@ -21,7 +20,7 @@ export default class Weather extends Component {
                         {this.props.weatherInfo.map(item => {
                             return (
                                 <tr style={{ color: 'antiquewhite' }}>
-                                    <td>{item.date}</td>
+                                    <td style={{paddingLeft:'3'}}>{item.date}</td>
                                     <td>{item.description}</td>
                                 </tr>
                             )
