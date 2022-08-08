@@ -8,8 +8,8 @@ export default class Weather extends Component {
         return (
             <>
                 <h1>Weather<br /></h1>
-                {this.props.weatherInfo.map((item,index) => {
-                    return (<ul key={index}>
+                {this.props.weatherInfo.map((item, index) => {
+                    return (<ul key={index} style={{ color: 'antiquewhite' }}>
                         <li>{item.date} {"   -   "}{item.description}</li>
                     </ul>
                     )
