@@ -1,15 +1,15 @@
 import './App.css';
-import React, { Component, useSyncExternalStore } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Map from './component/map';
-import MyAlert from './component/alert';
+// import MyAlert from './component/alert';
 import Weather from './component/Weather';
 import Movies from './component/Movies.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class App extends Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,6 +35,7 @@ class App extends Component {
         e.preventDefault();
         try {
             const cityData = await axios.get(`${process.env.REACT_APP_MAIN_URL}?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.userInput}&format=json`)
+            console.log(cityData);
             this.setState({
                 allCity: cityData.data[0],
                 display_name: cityData.data[0].display_name,
@@ -99,8 +100,8 @@ class App extends Component {
                     <Form.Control onChange={this.updateUserInput} type="text" id="userCityInput" />
                     <Button variant="primary" type="submit">Explore! </Button>
                 </Form>
-                {this.state.Displayerr &&
-                    <p>{this.state.errormsg}</p>}
+                {/* {this.state.Displayerr &&
+                    <p>{this.state.errormsg}</p>} */}
                 {this.state.display_name &&
                     <>
                         <p>City Name: {this.state.display_name}</p>
